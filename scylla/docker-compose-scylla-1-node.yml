@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  scylla-node1:
+    container_name: scylla-node1
+    image: scylladb/scylla:5.2
+    restart: always
+#    command: --smp 1 --memory 750M --overprovisioned 1 --api-address 0.0.0.0
+    volumes:
+      - ./scylladata-1-node:/var/lib/scylla
+    networks:
+      web:
+    ports:
+      - "9042:9042"
+
+networks:
+  web:
+    name: scylla
+    driver: bridge
+
